@@ -11,6 +11,7 @@ class SchoolPresent(Slide):
                 p[2]
             ])
 
+
         tex = Tex('Funkcje zespolone')
         self.play(Write(tex),run_time=2)
         self.next_slide()
@@ -43,6 +44,8 @@ class SchoolPresent(Slide):
         self.next_slide()
         equation3 = MathTex("z",r"=re^{i\theta}")
         equation3[0].set_color(YELLOW)
+        equation3[1][1:2].set_color(RED)
+        equation3[1][4:5].set_color(BLUE)
         self.play(Transform(equation2,equation3),FadeOut(exp),FadeOut(exp2))
         self.remove(equation2)
         self.next_slide()
@@ -152,6 +155,19 @@ class SchoolPresent(Slide):
         self.play(Create(grad))
         self.play(ApplyPointwiseFunction(trans,grad))
         self.next_slide()
-        func = lambda pos: ((pos[0] * UR + pos[1] * LEFT) - pos) / 3
-        self.add(ArrowVectorField(func))
-        self.wait()
+
+        vfield=ArrowVectorField(trans)
+        #vfield.set_color_by_gradient(RED,YELLOW,GREEN,BLUE,PURPLE)
+        self.play(*[GrowArrow(vec) for vec in vfield])
+        self.add(vfield)
+        self.next_slide()
+        stol=StreamLines(trans,stroke_width=3,max_anchors_per_line=30)
+        self.play(Uncreate(vfield),FadeOut(grad))
+        self.add(stol)
+        self.remove(vfield,grad)
+        stol.start_animation(warm_up=True,flow_speed=1.5)
+        self.wait(20)
+
+        self.next_slide()
+
+                
