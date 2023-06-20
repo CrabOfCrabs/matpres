@@ -56,7 +56,7 @@ class SchoolPresent(Slide):
 
 
         opp2=Tex("(","a"," + ","b","i)"," * (","c"," + ","d","i)"," = ","a","c"," + ","a","d","i + ","b","c","i - ","b","d")
-        opp1=Tex("(","a"," + ","b","i)"," + (","c"," + ","d","i)"," = ","a","+","c"," + (","b","+","d",")i").next_to(opp2,UP)
+        opp1=Tex("(","a"," + ","b","i)"," + (","c"," + ","d","i)"," = ","a"," + ","c"," + (","b","+","d",")i").next_to(opp2,UP)
         opp3=MathTex(r"\frac{a + bi}{c + di}",r"=\frac{ac + bd}{c^{2} + d^{2}}",r" + (\frac{bc - ad}{c^{2} + d^{2}})i").next_to(opp2,DOWN)
         opp1[1].set_color(RED)
         opp1[11].set_color(RED)
